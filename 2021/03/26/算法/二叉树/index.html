@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>递归：无穷无尽,万物迭代 | Hexo</title>
+  <title>二叉树常见算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="全排列12345678910111213141516171819202122232425262728293031323334public class Main &amp;#123;    public static final int max&#x3D;20;    int[] p&#x3D;new int[max];    public  void generate(int index,int n,boolean[] ta">
+  <meta name="description" content="二叉树结构1234typedef struct BiTNode&amp;#123;    ElemType data;    struct BiTNode *lchild,*rchild;&amp;#125;BiTNode,*BiTree;  二叉树的高度递归：1234567891011121314151617181920212223int btheigh(BiTree T)&amp;#123;    int h1,h2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="递归：无穷无尽,万物迭代">
-<meta property="og:url" content="http://example.com/2021/03/19/%E9%80%92%E5%BD%92/index.html">
+<meta property="og:title" content="二叉树常见算法">
+<meta property="og:url" content="http://example.com/2021/03/26/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="全排列12345678910111213141516171819202122232425262728293031323334public class Main &amp;#123;    public static final int max&#x3D;20;    int[] p&#x3D;new int[max];    public  void generate(int index,int n,boolean[] ta">
+<meta property="og:description" content="二叉树结构1234typedef struct BiTNode&amp;#123;    ElemType data;    struct BiTNode *lchild,*rchild;&amp;#125;BiTNode,*BiTree;  二叉树的高度递归：1234567891011121314151617181920212223int btheigh(BiTree T)&amp;#123;    int h1,h2">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-19T09:31:58.550Z">
-<meta property="article:modified_time" content="2021-03-26T03:28:50.782Z">
+<meta property="article:published_time" content="2021-03-26T01:30:57.733Z">
+<meta property="article:modified_time" content="2021-03-26T02:52:28.387Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">分类</a></li>
+				<li><a href="/tags/%E6%84%9F%E6%83%B3/">感想</a></li>
 	        
 			</ul>
 		</nav>
@@ -136,7 +136,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">分类</a></li>
+					<li style="width: 50%"><a href="/tags/%E6%84%9F%E6%83%B3/">感想</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,29 +151,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-递归" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法/二叉树" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      递归：无穷无尽,万物迭代
+      二叉树常见算法
     </h1>
   
 
         
-        <a href="/2021/03/19/%E9%80%92%E5%BD%92/" class="archive-article-date">
-  	<time datetime="2021-03-19T09:31:58.550Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
+        <a href="/2021/03/26/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2021-03-26T01:30:57.733Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="全排列"><a href="#全排列" class="headerlink" title="全排列"></a>全排列</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> max=<span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span>[] p=<span class="keyword">new</span> <span class="keyword">int</span>[max];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">generate</span><span class="params">(<span class="keyword">int</span> index,<span class="keyword">int</span> n,<span class="keyword">boolean</span>[] table)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index== n+<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                System.out.print(p[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>;x&lt;=n;x++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(table[x]==<span class="keyword">false</span>)&#123;</span><br><span class="line">                p[index]=x;</span><br><span class="line">                table[x]=<span class="keyword">true</span>;</span><br><span class="line">                generate(index+<span class="number">1</span>,n,table);</span><br><span class="line">                table[x]=<span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span>[] table=<span class="keyword">new</span> <span class="keyword">boolean</span>[max];</span><br><span class="line">        Arrays.fill(table,<span class="keyword">false</span>);</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n=sc.nextInt();</span><br><span class="line">        Main all=<span class="keyword">new</span> Main();</span><br><span class="line">        all.generate(<span class="number">1</span>,n,table);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="二叉树结构"><a href="#二叉树结构" class="headerlink" title="二叉树结构"></a>二叉树结构</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span></span><br><span class="line">&#125;BiTNode,*BiTree;</span><br></pre></td></tr></table></figure>
 
-<h1 id="n皇后问题"><a href="#n皇后问题" class="headerlink" title="n皇后问题"></a>n皇后问题</h1>
+<h1 id="二叉树的高度"><a href="#二叉树的高度" class="headerlink" title="二叉树的高度"></a>二叉树的高度</h1><h2 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h1,h2;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	    h1=btheigh(T-&gt;lchild);</span><br><span class="line">		h2=btheigh(T-&gt;rchild);</span><br><span class="line">		<span class="keyword">if</span>(h1&gt;h2)</span><br><span class="line">		<span class="keyword">return</span> h1+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> h2+<span class="number">1</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//简洁版：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> max(btheigh(T-&gt;lchild),btheigh(T-&gt;rchild))+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="非递归"><a href="#非递归" class="headerlink" title="非递归:"></a>非递归:</h2><h3 id="BFS-层次遍历，队列）"><a href="#BFS-层次遍历，队列）" class="headerlink" title="BFS(层次遍历，队列）"></a>BFS(层次遍历，队列）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> front=<span class="number">-1</span>,rear=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>,level=<span class="number">0</span>;</span><br><span class="line">	BiTree Q[MaxSize];</span><br><span class="line">	BiTree p;</span><br><span class="line">	Q[++rear]=T;</span><br><span class="line">	<span class="keyword">while</span>(front&lt;rear)</span><br><span class="line">	&#123;</span><br><span class="line">	    p=Q[++front];</span><br><span class="line">		<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;lchild;</span><br><span class="line">	    <span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;rchild;</span><br><span class="line">		<span class="keyword">if</span>(front==last)</span><br><span class="line">		&#123;</span><br><span class="line">		    level++;</span><br><span class="line">			last=rear;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> level;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="DFS-前中后序遍历的非递归方法，栈"><a href="#DFS-前中后序遍历的非递归方法，栈" class="headerlink" title="DFS(前中后序遍历的非递归方法，栈)"></a>DFS(前中后序遍历的非递归方法，栈)</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	InitStack(S);</span><br><span class="line">	InitStack(level);</span><br><span class="line">	<span class="keyword">int</span> h=<span class="number">0</span>;</span><br><span class="line">	BiTree p=T;</span><br><span class="line">	Push(S,T);</span><br><span class="line">	Push(level,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">while</span>(IsEmpty(S))</span><br><span class="line">	&#123;</span><br><span class="line">	p=Pop(S);</span><br><span class="line">	<span class="keyword">int</span> tmp=Pop(level);</span><br><span class="line">	h=max(tmp,h);</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;lchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;rchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="x结点的所有祖先"><a href="#x结点的所有祖先" class="headerlink" title="x结点的所有祖先"></a>x结点的所有祖先</h1>
       
 
       
@@ -242,7 +249,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/19/%E9%80%92%E5%BD%92/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/26/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -256,18 +263,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/26/%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          二叉树常见算法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/18/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">树和图的实现</div>
+    <a href="/2021/03/19/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">递归：无穷无尽,万物迭代</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -295,7 +293,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="递归" data-title="递归：无穷无尽,万物迭代" data-url="http://example.com/2021/03/19/%E9%80%92%E5%BD%92/"></div>
+	<div class="ds-thread" data-thread-key="算法/二叉树" data-title="二叉树常见算法" data-url="http://example.com/2021/03/26/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

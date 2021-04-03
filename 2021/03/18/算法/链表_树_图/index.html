@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>二叉树常见算法 | Hexo</title>
+  <title>树和图的实现 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二叉树结构1234typedef struct BiTNode&amp;#123;    ElemType data;    struct BiTNode *lchild,*rchild;&amp;#125;BiTNode,*BiTree;  二叉树的高度递归：1234567891011121314151617181920212223int btheigh(BiTree T)&amp;#123;    int h1,h2">
+  <meta name="description" content="树： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二叉树常见算法">
-<meta property="og:url" content="http://example.com/2021/03/26/%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:title" content="树和图的实现">
+<meta property="og:url" content="http://example.com/2021/03/18/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="二叉树结构1234typedef struct BiTNode&amp;#123;    ElemType data;    struct BiTNode *lchild,*rchild;&amp;#125;BiTNode,*BiTree;  二叉树的高度递归：1234567891011121314151617181920212223int btheigh(BiTree T)&amp;#123;    int h1,h2">
+<meta property="og:description" content="树： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-26T01:30:57.733Z">
-<meta property="article:modified_time" content="2021-03-26T02:52:28.387Z">
+<meta property="article:published_time" content="2021-03-18T10:29:48.115Z">
+<meta property="article:modified_time" content="2021-04-01T13:28:25.018Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">分类</a></li>
+				<li><a href="/tags/%E6%84%9F%E6%83%B3/">感想</a></li>
 	        
 			</ul>
 		</nav>
@@ -136,7 +136,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">分类</a></li>
+					<li style="width: 50%"><a href="/tags/%E6%84%9F%E6%83%B3/">感想</a></li>
 		        
 				</ul>
 			</nav>
@@ -151,36 +151,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-二叉树" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法/链表_树_图" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      二叉树常见算法
+      树和图的实现
     </h1>
   
 
         
-        <a href="/2021/03/26/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2021-03-26T01:30:57.733Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+        <a href="/2021/03/18/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/" class="archive-article-date">
+  	<time datetime="2021-03-18T10:29:48.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树结构"><a href="#二叉树结构" class="headerlink" title="二叉树结构"></a>二叉树结构</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span></span><br><span class="line">&#125;BiTNode,*BiTree;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二叉树的高度"><a href="#二叉树的高度" class="headerlink" title="二叉树的高度"></a>二叉树的高度</h1><h2 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h1,h2;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	    h1=btheigh(T-&gt;lchild);</span><br><span class="line">		h2=btheigh(T-&gt;rchild);</span><br><span class="line">		<span class="keyword">if</span>(h1&gt;h2)</span><br><span class="line">		<span class="keyword">return</span> h1+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> h2+<span class="number">1</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//简洁版：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> max(btheigh(T-&gt;lchild),btheigh(T-&gt;rchild))+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="非递归"><a href="#非递归" class="headerlink" title="非递归:"></a>非递归:</h2><h3 id="BFS-层次遍历，队列）"><a href="#BFS-层次遍历，队列）" class="headerlink" title="BFS(层次遍历，队列）"></a>BFS(层次遍历，队列）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> front=<span class="number">-1</span>,rear=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>,level=<span class="number">0</span>;</span><br><span class="line">	BiTree Q[MaxSize];</span><br><span class="line">	BiTree p;</span><br><span class="line">	Q[++rear]=T;</span><br><span class="line">	<span class="keyword">while</span>(front&lt;rear)</span><br><span class="line">	&#123;</span><br><span class="line">	    p=Q[++front];</span><br><span class="line">		<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;lchild;</span><br><span class="line">	    <span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;rchild;</span><br><span class="line">		<span class="keyword">if</span>(front==last)</span><br><span class="line">		&#123;</span><br><span class="line">		    level++;</span><br><span class="line">			last=rear;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> level;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="DFS-前中后序遍历的非递归方法，栈"><a href="#DFS-前中后序遍历的非递归方法，栈" class="headerlink" title="DFS(前中后序遍历的非递归方法，栈)"></a>DFS(前中后序遍历的非递归方法，栈)</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	InitStack(S);</span><br><span class="line">	InitStack(level);</span><br><span class="line">	<span class="keyword">int</span> h=<span class="number">0</span>;</span><br><span class="line">	BiTree p=T;</span><br><span class="line">	Push(S,T);</span><br><span class="line">	Push(level,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">while</span>(IsEmpty(S))</span><br><span class="line">	&#123;</span><br><span class="line">	p=Pop(S);</span><br><span class="line">	<span class="keyword">int</span> tmp=Pop(level);</span><br><span class="line">	h=max(tmp,h);</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;lchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;rchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="x结点的所有祖先"><a href="#x结点的所有祖先" class="headerlink" title="x结点的所有祖先"></a>x结点的所有祖先</h1>
+        <p>树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static class TreeNode &#123;</span><br><span class="line">        int val;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        TreeNode(int val)&#123;</span><br><span class="line">            this.val&#x3D;val;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode(int val,TreeNode left,TreeNode right)&#123;</span><br><span class="line">            this.val&#x3D;val;</span><br><span class="line">            this.left&#x3D;left;</span><br><span class="line">            this.right&#x3D;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static TreeNode constructTree(Integer[] nums)&#123;</span><br><span class="line">        if (nums.length &#x3D;&#x3D; 0) return new TreeNode(0);</span><br><span class="line">        Deque&lt;TreeNode&gt; nodeQueue &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">        &#x2F;&#x2F; 创建一个根节点</span><br><span class="line">        TreeNode root &#x3D; new TreeNode(nums[0]);</span><br><span class="line">        nodeQueue.offer(root);</span><br><span class="line">        TreeNode cur;</span><br><span class="line">        &#x2F;&#x2F; 记录当前行节点的数量（注意不一定是2的幂，而是上一行中非空节点的数量乘2）</span><br><span class="line">        int lineNodeNum &#x3D; 2;</span><br><span class="line">        &#x2F;&#x2F; 记录当前行中数字在数组中的开始位置</span><br><span class="line">        int startIndex &#x3D; 1;</span><br><span class="line">        &#x2F;&#x2F; 记录数组中剩余的元素的数量</span><br><span class="line">        int restLength &#x3D; nums.length - 1;</span><br><span class="line"></span><br><span class="line">        while(restLength &gt; 0) &#123;</span><br><span class="line">           </span><br><span class="line">            for (int i &#x3D; startIndex; i &lt; startIndex + lineNodeNum; i &#x3D; i + 2) &#123;</span><br><span class="line">                &#x2F;&#x2F; 说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root</span><br><span class="line">                if (i &#x3D;&#x3D; nums.length) return root;</span><br><span class="line">                cur &#x3D; nodeQueue.poll();</span><br><span class="line">                if (nums[i] !&#x3D; null) &#123;</span><br><span class="line">                    cur.left &#x3D; new TreeNode(nums[i]);</span><br><span class="line">                    nodeQueue.offer(cur.left);</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F; 同上，说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root</span><br><span class="line">                if (i + 1 &#x3D;&#x3D; nums.length) return root;</span><br><span class="line">                if (nums[i + 1] !&#x3D; null) &#123;</span><br><span class="line">                    cur.right &#x3D; new TreeNode(nums[i + 1]);</span><br><span class="line">                    nodeQueue.offer(cur.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            startIndex +&#x3D; lineNodeNum;</span><br><span class="line">            restLength -&#x3D; lineNodeNum;</span><br><span class="line">            lineNodeNum &#x3D; nodeQueue.size() * 2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void preOrder(TreeNode root) &#123;</span><br><span class="line">        if (root &#x3D;&#x3D; null) return;</span><br><span class="line">        System.out.print(root.val + &quot; &quot;);</span><br><span class="line">        preOrder(root.left);</span><br><span class="line">        preOrder(root.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int[] levelOrder(TreeNode root) &#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return new int[0];</span><br><span class="line">        Queue&lt;TreeNode&gt; a&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; sum&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        a.add(root);</span><br><span class="line">        while(!a.isEmpty())&#123;</span><br><span class="line">            TreeNode t&#x3D;a.poll();</span><br><span class="line">            sum.add(t.val);</span><br><span class="line">            if(t.left!&#x3D;null) a.add(t.left);</span><br><span class="line">            if(t.right!&#x3D;null) a.add(t.right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] p&#x3D;new int[sum.size()];</span><br><span class="line">        for(int i&#x3D;0;i&lt;sum.size();i++)&#123;</span><br><span class="line">            p[i]&#x3D;sum.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return p;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Integer[] nums &#x3D; &#123;5,4,8,11,null,13,4,7,2,null,null,null,1&#125;;</span><br><span class="line">        TreeNode root &#x3D; constructTree(nums);</span><br><span class="line">       &#x2F;&#x2F; System.out.println(root);</span><br><span class="line"></span><br><span class="line">       Main t&#x3D;new Main();</span><br><span class="line">        &#x2F;&#x2F;t.preOrder(root);</span><br><span class="line">        int[] s&#x3D;t.levelOrder(root);</span><br><span class="line">        for(int i&#x3D;0;i&lt;s.length;i++)&#123;</span><br><span class="line">            System.out.print(s[i]+&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -249,7 +241,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/26/%E4%BA%8C%E5%8F%89%E6%A0%91/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/18/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,9 +255,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/03/19/%E7%AE%97%E6%B3%95/%E9%80%92%E5%BD%92/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          递归：无穷无尽,万物迭代
+        
+      </div>
+    </a>
   
-    <a href="/2021/03/19/%E9%80%92%E5%BD%92/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">递归：无穷无尽,万物迭代</div>
+  
+    <a href="/2021/03/18/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手撕代码</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -293,7 +294,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="二叉树" data-title="二叉树常见算法" data-url="http://example.com/2021/03/26/%E4%BA%8C%E5%8F%89%E6%A0%91/"></div>
+	<div class="ds-thread" data-thread-key="算法/链表_树_图" data-title="树和图的实现" data-url="http://example.com/2021/03/18/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
