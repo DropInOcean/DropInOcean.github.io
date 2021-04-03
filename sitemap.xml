@@ -93,6 +93,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/assets/demo/gift/index.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/assets/demo/mediator/demo.html</loc>
     
     <lastmod>2017-07-28</lastmod>
@@ -108,13 +115,6 @@
   
   <url>
     <loc>http://example.com/assets/demo/pre_css3_demo/demo.html</loc>
-    
-    <lastmod>2017-07-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://example.com/assets/demo/gift/index.html</loc>
     
     <lastmod>2017-07-28</lastmod>
     
