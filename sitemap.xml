@@ -57,6 +57,83 @@
     
   </url>
   
+  <url>
+    <loc>http://example.com/photos/index.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/hack_demo.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/jiugongge_demo.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/jiugongge_demo2.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/coffee_pc_demo/pro-con.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/mediator/demo.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/gift/index.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/pre_css3_demo/demo.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/my_news_reader/index.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/photos/ins.json</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/assets/demo/border1px.html</loc>
+    
+    <lastmod>2017-07-28</lastmod>
+    
+  </url>
+  
 
   <url>
     <loc>http://example.com/</loc>
