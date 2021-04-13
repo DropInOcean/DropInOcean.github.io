@@ -148,6 +148,492 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Dp系列/最长公共子序列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/03/Dp%E7%B3%BB%E5%88%97/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/">最长公共子序列</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/03/Dp%E7%B3%BB%E5%88%97/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" class="archive-article-date">
+  	<time datetime="2021-04-03T07:37:58.511Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>给定两个字符串text1和text2，返回这两个字符串的最长公共序列的长度。如果不存在公共子序列,返回 0。<br>一个字符串的子序列是指这样一个新的字符串:它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。<br>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。<br>两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。</p>
+<p>示例 1：<br>输入：text1 = “abcde”, text2 = “ace”<br>输出：3<br>解释：最长公共子序列是 “ace” ，它的长度为 3 。<br>示例 2：<br>输入：text1 = “abc”, text2 = “abc”<br>输出：3<br>解释：最长公共子序列是 “abc” ，它的长度为 3 。<br>示例 3：<br>输入：text1 = “abc”, text2 = “def”<br>输出：0<br>解释：两个字符串没有公共子序列，返回 0 。</p>
+<p>** 状态转移方程 **<br>dp[i][j]=dp[i-1][j-1]+1  A[i]==B[j]<br>dp[i][j]=max{dp[i-1][j],dp[i][j-1]}  A[i]!=B[j] </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(String text1, String text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m=text1.length();</span><br><span class="line">        <span class="keyword">int</span> n=text2.length();</span><br><span class="line">        <span class="keyword">char</span>[] s1=text1.toCharArray();</span><br><span class="line">        <span class="keyword">char</span>[] s2=text2.toCharArray();</span><br><span class="line">        <span class="keyword">int</span>[][] dp=<span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            dp[i][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s1[i-<span class="number">1</span>]==s2[j-<span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j]=Math.max(dp[i-<span class="number">1</span>][j],dp[i][j-<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Dp系列</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/03/Dp%E7%B3%BB%E5%88%97/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-树与图/二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/26/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树常见算法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/26/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2021-03-26T01:30:57.733Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="二叉树结构"><a href="#二叉树结构" class="headerlink" title="二叉树结构"></a>二叉树结构</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span>&#123;</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> *<span class="title">lchild</span>,*<span class="title">rchild</span>;</span></span><br><span class="line">&#125;BiTNode,*BiTree;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二叉树的高度"><a href="#二叉树的高度" class="headerlink" title="二叉树的高度"></a>二叉树的高度</h1><h2 id="递归："><a href="#递归：" class="headerlink" title="递归："></a>递归：</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h1,h2;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">	    h1=btheigh(T-&gt;lchild);</span><br><span class="line">		h2=btheigh(T-&gt;rchild);</span><br><span class="line">		<span class="keyword">if</span>(h1&gt;h2)</span><br><span class="line">		<span class="keyword">return</span> h1+<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> h2+<span class="number">1</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//简洁版：</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> max(btheigh(T-&gt;lchild),btheigh(T-&gt;rchild))+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="非递归"><a href="#非递归" class="headerlink" title="非递归:"></a>非递归:</h2><h3 id="BFS-层次遍历，队列）"><a href="#BFS-层次遍历，队列）" class="headerlink" title="BFS(层次遍历，队列）"></a>BFS(层次遍历，队列）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> front=<span class="number">-1</span>,rear=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>,level=<span class="number">0</span>;</span><br><span class="line">	BiTree Q[MaxSize];</span><br><span class="line">	BiTree p;</span><br><span class="line">	Q[++rear]=T;</span><br><span class="line">	<span class="keyword">while</span>(front&lt;rear)</span><br><span class="line">	&#123;</span><br><span class="line">	    p=Q[++front];</span><br><span class="line">		<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;lchild;</span><br><span class="line">	    <span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">		    Q[++rear]=p-&gt;rchild;</span><br><span class="line">		<span class="keyword">if</span>(front==last)</span><br><span class="line">		&#123;</span><br><span class="line">		    level++;</span><br><span class="line">			last=rear;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> level;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="DFS-前中后序遍历的非递归方法，栈"><a href="#DFS-前中后序遍历的非递归方法，栈" class="headerlink" title="DFS(前中后序遍历的非递归方法，栈)"></a>DFS(前中后序遍历的非递归方法，栈)</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">btheigh</span><span class="params">(BiTree T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T==<span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	InitStack(S);</span><br><span class="line">	InitStack(level);</span><br><span class="line">	<span class="keyword">int</span> h=<span class="number">0</span>;</span><br><span class="line">	BiTree p=T;</span><br><span class="line">	Push(S,T);</span><br><span class="line">	Push(level,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">while</span>(IsEmpty(S))</span><br><span class="line">	&#123;</span><br><span class="line">	p=Pop(S);</span><br><span class="line">	<span class="keyword">int</span> tmp=Pop(level);</span><br><span class="line">	h=max(tmp,h);</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;lchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;lchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(p-&gt;rchild!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	    Push(S,p-&gt;rchild);</span><br><span class="line">	    Push(level,temp+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="x结点的所有祖先"><a href="#x结点的所有祖先" class="headerlink" title="x结点的所有祖先"></a>x结点的所有祖先</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树与图</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/26/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E4%BA%8C%E5%8F%89%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-树与图/链表_树_图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/18/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/">树和图的实现</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/18/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/" class="archive-article-date">
+  	<time datetime="2021-03-18T10:29:48.115Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static class TreeNode &#123;</span><br><span class="line">        int val;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        TreeNode(int val)&#123;</span><br><span class="line">            this.val&#x3D;val;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode(int val,TreeNode left,TreeNode right)&#123;</span><br><span class="line">            this.val&#x3D;val;</span><br><span class="line">            this.left&#x3D;left;</span><br><span class="line">            this.right&#x3D;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static TreeNode constructTree(Integer[] nums)&#123;</span><br><span class="line">        if (nums.length &#x3D;&#x3D; 0) return new TreeNode(0);</span><br><span class="line">        Deque&lt;TreeNode&gt; nodeQueue &#x3D; new LinkedList&lt;&gt;();</span><br><span class="line">        &#x2F;&#x2F; 创建一个根节点</span><br><span class="line">        TreeNode root &#x3D; new TreeNode(nums[0]);</span><br><span class="line">        nodeQueue.offer(root);</span><br><span class="line">        TreeNode cur;</span><br><span class="line">        &#x2F;&#x2F; 记录当前行节点的数量（注意不一定是2的幂，而是上一行中非空节点的数量乘2）</span><br><span class="line">        int lineNodeNum &#x3D; 2;</span><br><span class="line">        &#x2F;&#x2F; 记录当前行中数字在数组中的开始位置</span><br><span class="line">        int startIndex &#x3D; 1;</span><br><span class="line">        &#x2F;&#x2F; 记录数组中剩余的元素的数量</span><br><span class="line">        int restLength &#x3D; nums.length - 1;</span><br><span class="line"></span><br><span class="line">        while(restLength &gt; 0) &#123;</span><br><span class="line">           </span><br><span class="line">            for (int i &#x3D; startIndex; i &lt; startIndex + lineNodeNum; i &#x3D; i + 2) &#123;</span><br><span class="line">                &#x2F;&#x2F; 说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root</span><br><span class="line">                if (i &#x3D;&#x3D; nums.length) return root;</span><br><span class="line">                cur &#x3D; nodeQueue.poll();</span><br><span class="line">                if (nums[i] !&#x3D; null) &#123;</span><br><span class="line">                    cur.left &#x3D; new TreeNode(nums[i]);</span><br><span class="line">                    nodeQueue.offer(cur.left);</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F; 同上，说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root</span><br><span class="line">                if (i + 1 &#x3D;&#x3D; nums.length) return root;</span><br><span class="line">                if (nums[i + 1] !&#x3D; null) &#123;</span><br><span class="line">                    cur.right &#x3D; new TreeNode(nums[i + 1]);</span><br><span class="line">                    nodeQueue.offer(cur.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            startIndex +&#x3D; lineNodeNum;</span><br><span class="line">            restLength -&#x3D; lineNodeNum;</span><br><span class="line">            lineNodeNum &#x3D; nodeQueue.size() * 2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void preOrder(TreeNode root) &#123;</span><br><span class="line">        if (root &#x3D;&#x3D; null) return;</span><br><span class="line">        System.out.print(root.val + &quot; &quot;);</span><br><span class="line">        preOrder(root.left);</span><br><span class="line">        preOrder(root.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int[] levelOrder(TreeNode root) &#123;</span><br><span class="line">        if(root&#x3D;&#x3D;null) return new int[0];</span><br><span class="line">        Queue&lt;TreeNode&gt; a&#x3D;new LinkedList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; sum&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">        a.add(root);</span><br><span class="line">        while(!a.isEmpty())&#123;</span><br><span class="line">            TreeNode t&#x3D;a.poll();</span><br><span class="line">            sum.add(t.val);</span><br><span class="line">            if(t.left!&#x3D;null) a.add(t.left);</span><br><span class="line">            if(t.right!&#x3D;null) a.add(t.right);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int[] p&#x3D;new int[sum.size()];</span><br><span class="line">        for(int i&#x3D;0;i&lt;sum.size();i++)&#123;</span><br><span class="line">            p[i]&#x3D;sum.get(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return p;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Integer[] nums &#x3D; &#123;5,4,8,11,null,13,4,7,2,null,null,null,1&#125;;</span><br><span class="line">        TreeNode root &#x3D; constructTree(nums);</span><br><span class="line">       &#x2F;&#x2F; System.out.println(root);</span><br><span class="line"></span><br><span class="line">       Main t&#x3D;new Main();</span><br><span class="line">        &#x2F;&#x2F;t.preOrder(root);</span><br><span class="line">        int[] s&#x3D;t.levelOrder(root);</span><br><span class="line">        for(int i&#x3D;0;i&lt;s.length;i++)&#123;</span><br><span class="line">            System.out.print(s[i]+&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">树与图</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/18/%E6%A0%91%E4%B8%8E%E5%9B%BE/%E9%93%BE%E8%A1%A8_%E6%A0%91_%E5%9B%BE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法/常见手撕算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/18/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/">手撕代码</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/18/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-03-18T08:56:58.108Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int[] arr&#x3D;&#123;16, 7, 3, 20, 17, 8&#125;;</span><br><span class="line">        quickSort(arr);</span><br><span class="line">        for(int num:arr)&#123;</span><br><span class="line">            System.out.print(num+&quot; &quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void quickSort(int[] a) &#123;</span><br><span class="line">        if(a.length&gt;0) &#123;</span><br><span class="line">            quickSort(a, 0 , a.length-1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void quickSort(int[] a, int low, int high) &#123;</span><br><span class="line">        if( low &gt; high) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        int i &#x3D; low;</span><br><span class="line">        int j &#x3D; high;</span><br><span class="line">        int key &#x3D; a[ low ];</span><br><span class="line"></span><br><span class="line">        while( i&lt; j) &#123;</span><br><span class="line">            while(i&lt;j &amp;&amp; a[j] &gt; key)&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            while( i&lt;j &amp;&amp; a[i] &lt;&#x3D; key) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if(i&lt;j) &#123;</span><br><span class="line">                int p &#x3D; a[i];</span><br><span class="line">                a[i] &#x3D; a[j];</span><br><span class="line">                a[j] &#x3D; p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int p &#x3D; a[i];</span><br><span class="line">        a[i] &#x3D; a[low];</span><br><span class="line">        a[low] &#x3D; p;</span><br><span class="line"></span><br><span class="line">        quickSort(a, low, i-1 );</span><br><span class="line">        quickSort(a, i+1, high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public static void merge(int[] a,int l1,int r1,int l2,int r2) &#123;&#x2F;&#x2F;将两个有序序列合并</span><br><span class="line">    int i&#x3D;l1;int j&#x3D;l2;</span><br><span class="line">    int[] tmp&#x3D;new  int[Max];int index&#x3D;0;</span><br><span class="line">    while (i&lt;&#x3D;r1&amp;&amp;j&lt;&#x3D;r2)&#123;</span><br><span class="line">        if(a[i]&lt;a[j])&#123;</span><br><span class="line">            tmp[index++]&#x3D;a[i++];</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            tmp[index++]&#x3D;a[j++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    while(i&lt;&#x3D;r1)</span><br><span class="line">        tmp[index++]&#x3D;a[i++];</span><br><span class="line">    while (j&lt;&#x3D;r2)</span><br><span class="line">        tmp[index++]&#x3D;a[j++];</span><br><span class="line">    for(int k&#x3D;0;k&lt;index;k++)&#123;</span><br><span class="line">        a[l1+k]&#x3D;tmp[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static  void sort(int[] a,int left,int right)&#123;&#x2F;&#x2F;2路归并</span><br><span class="line">    if(left&lt;right)&#123;</span><br><span class="line">        int mid&#x3D;(left+right)&#x2F;2;</span><br><span class="line">        sort(a,left,mid);</span><br><span class="line">        sort(a,mid+1,right);</span><br><span class="line">        merge(a,left,mid,mid+1,right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="推排序"><a href="#推排序" class="headerlink" title="推排序"></a>推排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr=&#123;<span class="number">16</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">20</span>, <span class="number">17</span>, <span class="number">8</span>&#125;;</span><br><span class="line">        heapSort(arr);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num:arr)&#123;</span><br><span class="line">            System.out.print(num+<span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">        createheap(arr);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=arr.length-<span class="number">1</span>;j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp=arr[<span class="number">0</span>];</span><br><span class="line">            arr[<span class="number">0</span>]=arr[j];</span><br><span class="line">            arr[j]=temp;</span><br><span class="line">            adjustHeap(arr,j,<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createheap</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length/<span class="number">2</span>-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            adjustHeap(arr,arr.length,i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">adjustHeap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> len,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lchild=i*<span class="number">2</span>+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> k=i;</span><br><span class="line">        <span class="keyword">int</span> temp=arr[i];</span><br><span class="line">        <span class="keyword">while</span>(lchild&lt;len)&#123;</span><br><span class="line">            <span class="keyword">if</span>(lchild+<span class="number">1</span>&lt;len)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[lchild]&lt;arr[lchild+<span class="number">1</span>])&#123;</span><br><span class="line">                    lchild=lchild+<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(arr[lchild]&gt;temp)&#123;</span><br><span class="line">                arr[k]=arr[lchild];</span><br><span class="line">                k=lchild;</span><br><span class="line">                lchild=<span class="number">2</span>*k+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[k]=temp;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] a)</span></span>&#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">           <span class="keyword">int</span> k=i;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;a.length;j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(a[j]&lt;a[k])&#123;</span><br><span class="line">                   k=j;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">int</span> tmp=a[i];</span><br><span class="line">           a[i]=a[k];</span><br><span class="line">           a[k]=tmp;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="倒置"><a href="#倒置" class="headerlink" title="倒置"></a>倒置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ListNode head=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;  <span class="comment">//定义结构体</span></span><br><span class="line">        <span class="keyword">int</span> value;</span><br><span class="line">        ListNode next;</span><br><span class="line">        ListNode(<span class="keyword">int</span> x)&#123;</span><br><span class="line">            value=x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*添加元素*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addNode</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        ListNode currnode=<span class="keyword">new</span> ListNode(i);</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span>)&#123;</span><br><span class="line">            head=currnode;</span><br><span class="line">            <span class="keyword">return</span>;    <span class="comment">//重点注意，不可省略，否则变为自身连接</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        ListNode pNode=head;</span><br><span class="line">        <span class="keyword">while</span>(pNode.next!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            pNode=pNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        pNode.next=currnode;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*打印元素*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Print</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ListNode pnode=head;</span><br><span class="line">        <span class="keyword">while</span> (pnode!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            System.out.print(pnode.value+<span class="string">&quot; &quot;</span>);</span><br><span class="line">            pnode=pnode.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*倒置链表*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ListNode pHead=<span class="keyword">null</span>;</span><br><span class="line">        ListNode pRre=<span class="keyword">null</span>;</span><br><span class="line">        ListNode pNode=head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(pNode!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode pNext=pNode.next;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(pNext==<span class="keyword">null</span>)&#123;</span><br><span class="line">                pHead=pNode;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            pNode.next=pRre;</span><br><span class="line">            pRre=pNode;</span><br><span class="line">            pNode=pNext;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pHead;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Main list = <span class="keyword">new</span> Main();</span><br><span class="line">       Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!sc.hasNext(<span class="string">&quot;#&quot;</span>))&#123;</span><br><span class="line">         list.addNode(Integer.valueOf(sc.next()));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        list.head=list.reverseList();</span><br><span class="line">        list.Print();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="找出链表相同元素"><a href="#找出链表相同元素" class="headerlink" title="找出链表相同元素"></a>找出链表相同元素</h2><h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h2 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="还原树"><a href="#还原树" class="headerlink" title="还原树"></a>还原树</h2><h2 id="最近公共祖先"><a href="#最近公共祖先" class="headerlink" title="最近公共祖先"></a>最近公共祖先</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/18/%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-java/Map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/14/java/Map/">Map</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/14/java/Map/" class="archive-article-date">
+  	<time datetime="2021-03-14T12:02:41.890Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="接口：Map-lt-K-V-gt"><a href="#接口：Map-lt-K-V-gt" class="headerlink" title="接口：Map&lt;K,V&gt;"></a>接口：Map&lt;K,V&gt;</h1><p><strong>注意</strong><br>1.key与value数据类型可以相同也可以不同<br>2.key不可以重复，value可以重复<br>3.key与value一一对应</p>
+<p>java.util.HashMap&lt;K,v&gt;集合<br>HashMap的特点：<br>    1.HashMap集合底层是哈希表:查询特别快<br>        数组+链表+红黑树(链表长度超过8)：提高查询速度<br>    2.无序集合，存取顺序不同<br>LinkedHashMap的特点：<br>    1.LinkedHashMap集合底层是哈希表+链表(保证迭代的顺序)<br>    2.有序集合</p>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><p>put(K key,V value)返回V<br>get(Object key) 返回V</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/14/java/Map/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-c/结构和指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/14/c/%E7%BB%93%E6%9E%84%E5%92%8C%E6%8C%87%E9%92%88/">结构和指针简述</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/14/c/%E7%BB%93%E6%9E%84%E5%92%8C%E6%8C%87%E9%92%88/" class="archive-article-date">
+  	<time datetime="2021-03-14T09:27:38.468Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>1.<strong>struct的用法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct node&#123;</span><br><span class="line">    int data[20];</span><br><span class="line">	int maxlength;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>则定义了node结构，结构由data[]数组和最大长度maxlength两个组成</p>
+<p>2.<strong>使用方法</strong><br>    - 定义结构变量从而使用<br>    <code>struct node list;</code><br>    - 简化<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct node&#123;</span><br><span class="line"></span><br><span class="line">&#125;list;</span><br></pre></td></tr></table></figure></p>
+<h2 id="结构传递的方法"><a href="#结构传递的方法" class="headerlink" title="结构传递的方法"></a>结构传递的方法</h2><p>1.<strong>通过指针传递结构</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int mian()</span><br><span class="line">&#123;</span><br><span class="line">    struct node L;</span><br><span class="line">	initialList(&amp;L);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">initialList(struct node *pst)</span><br><span class="line">&#123;</span><br><span class="line">    pst-&gt;maxlength&#x3D;0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.<strong>传递结构</strong>    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int mian()</span><br><span class="line">&#123;</span><br><span class="line">    struct node L;</span><br><span class="line">	initialList(L);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">initialList(struct node pst)</span><br><span class="line">&#123;</span><br><span class="line">    pst.maxlength&#x3D;0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="一个简化方法"><a href="#一个简化方法" class="headerlink" title="一个简化方法"></a>一个简化方法</h2><p><strong>typedef</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct node&#123;</span><br><span class="line">    int data[20];</span><br><span class="line">	int maxlength;</span><br><span class="line">&#125;link;</span><br></pre></td></tr></table></figure>
+<p>定义方法：link *L;</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">c++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/14/c/%E7%BB%93%E6%9E%84%E5%92%8C%E6%8C%87%E9%92%88/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-剑指offer/剑指offer" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -173,9 +659,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span>[][] visit=<span class="keyword">new</span> <span class="keyword">boolean</span>[m][n];</span><br><span class="line">        <span class="keyword">return</span> DFS(<span class="number">0</span>,<span class="number">0</span>,m,n,k,visit);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">int</span> k,<span class="keyword">boolean</span> visit[][])</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span>||j&lt;<span class="number">0</span>||i&gt;=m||j&gt;=n||number(i)+number(j)&gt;k||visit[i][j])&#123;   <span class="comment">//出口</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        visit[i][j]=<span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">return</span> DFS(i-<span class="number">1</span>,j,m,n,k,visit)+DFS(i+<span class="number">1</span>,j,m,n,k,visit)+DFS(i,j-<span class="number">1</span>,m,n,k,visit)    </span><br><span class="line">               +DFS(i,j+<span class="number">1</span>,m,n,k,visit)+<span class="number">1</span>;                                           <span class="comment">//选择</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">number</span><span class="params">(<span class="keyword">int</span> m)</span></span>&#123;  <span class="comment">//判断函数</span></span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(m&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            sum+=m%<span class="number">10</span>;</span><br><span class="line">            m/=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
-
-
-<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="剑指Offer48：-最长不含重复字符的子字符串"><a href="#剑指Offer48：-最长不含重复字符的子字符串" class="headerlink" title="剑指Offer48： 最长不含重复字符的子字符串"></a>剑指Offer48： 最长不含重复字符的子字符串</h3><p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。<br>示例 1:<br>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。<br>示例 2:<br>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。<br>示例 3:<br>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。<br>    请注意，你的答案必须是 子串 的长度，”pwke” 是一个子序列，不是子串。</p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="剑指Offer48：-最长不含重复字符的子字符串"><a href="#剑指Offer48：-最长不含重复字符的子字符串" class="headerlink" title="剑指Offer48： 最长不含重复字符的子字符串"></a>剑指Offer48： 最长不含重复字符的子字符串</h3><p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。<br>示例 1:<br>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。<br>示例 2:<br>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。<br>示例 3:<br>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。<br>    请注意，你的答案必须是 子串 的长度，”pwke” 是一个子序列，不是子串。</p>
 <p>** 转移方程 **<br>dp[i]     dp[i-1]+1,   dp[i-1]&lt;i-j<br>          i-j,         dp[i-1]&gt;=i-j</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">         Map&lt;Character, Integer&gt; dic = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>, tmp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> i = dic.getOrDefault(s.charAt(j), -<span class="number">1</span>); <span class="comment">// 获取索引 i</span></span><br><span class="line">            dic.put(s.charAt(j), j); <span class="comment">// 更新哈希表</span></span><br><span class="line">            tmp = tmp &lt; j - i ? tmp + <span class="number">1</span> : j - i; <span class="comment">// dp[j - 1] -&gt; dp[j]</span></span><br><span class="line">            res = Math.max(res, tmp); <span class="comment">// max(dp[j - 1], dp[j])</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -183,14 +667,12 @@
 <p>** 转移方程 **<br>dp[i]= dp[i-2]+dp[i-1] ,   10&lt;=10*x[i-1]+x[i]&lt;=25<br>       dp[i-1]         ,   10*x[i-1]+x[i]&lt;10 || 10*x[i-1]+x[i] &gt;25</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    public int translateNum(int num) &#123;</span><br><span class="line">        String s&#x3D;String.valueOf(num);</span><br><span class="line">        int[] dp&#x3D;new int[s.length()+1];</span><br><span class="line">        dp[0]&#x3D;1;</span><br><span class="line">        dp[1]&#x3D;1;</span><br><span class="line">        for(int i&#x3D;2;i&lt;&#x3D;s.length();i++)&#123;</span><br><span class="line">            String sum&#x3D;s.substring(i-2,i);</span><br><span class="line">            if(sum.compareTo(&quot;10&quot;) &gt;&#x3D; 0 &amp;&amp; sum.compareTo(&quot;25&quot;) &lt;&#x3D; 0)&#123;</span><br><span class="line">                dp[i]&#x3D;dp[i-1]+dp[i-2];</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                dp[i]&#x3D;dp[i-1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[s.length()];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
-
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="剑指Offer53：在排序数组中查找数字"><a href="#剑指Offer53：在排序数组中查找数字" class="headerlink" title="剑指Offer53：在排序数组中查找数字"></a>剑指Offer53：在排序数组中查找数字</h3><p>统计一个数字在排序数组中出现的次数。<br>示例:<br>输入: nums = [5,7,7,8,8,10], target = 8<br>输出: 2<br>输入: nums = [5,7,7,8,8,10], target = 6<br>输出: 0</p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><h3 id="剑指Offer53：在排序数组中查找数字"><a href="#剑指Offer53：在排序数组中查找数字" class="headerlink" title="剑指Offer53：在排序数组中查找数字"></a>剑指Offer53：在排序数组中查找数字</h3><p>统计一个数字在排序数组中出现的次数。<br>示例:<br>输入: nums = [5,7,7,8,8,10], target = 8<br>输出: 2<br>输入: nums = [5,7,7,8,8,10], target = 6<br>输出: 0</p>
 <p>** 方法：两次二分查找 **</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> number=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.length&gt;<span class="number">0</span>)&#123;  <span class="comment">//临界条件</span></span><br><span class="line">        <span class="keyword">int</span> low=Getlow(nums,target);</span><br><span class="line">        <span class="keyword">int</span> high=Gethigh(nums,target);</span><br><span class="line">        <span class="keyword">if</span>(low&gt;-<span class="number">1</span>&amp;&amp;high&gt;-<span class="number">1</span>)&#123;</span><br><span class="line">            number=high-low+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> number;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Getlow</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(low+high)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">if</span>((mid&gt;<span class="number">0</span> &amp;&amp; nums[mid-<span class="number">1</span>]!=target)||mid==<span class="number">0</span>)&#123;  <span class="comment">//注意if条件的顺序，mid&gt;0与mid-1不能调换否则出错</span></span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">            &#123;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">````</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Gethigh</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(low+high)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">if</span>((mid&lt;nums.length-<span class="number">1</span> &amp;&amp; nums[mid+<span class="number">1</span>]!=target)||mid==nums.length-<span class="number">1</span>)&#123;   <span class="comment">//**注意if条件的顺序，mid&lt;nums.length-1与mid+1不能调换否则出错**</span></span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">            &#123;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> number=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.length&gt;<span class="number">0</span>)&#123;  <span class="comment">//临界条件</span></span><br><span class="line">        <span class="keyword">int</span> low=Getlow(nums,target);</span><br><span class="line">        <span class="keyword">int</span> high=Gethigh(nums,target);</span><br><span class="line">        <span class="keyword">if</span>(low&gt;-<span class="number">1</span>&amp;&amp;high&gt;-<span class="number">1</span>)&#123;</span><br><span class="line">            number=high-low+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> number;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Getlow</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(low+high)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">if</span>((mid&gt;<span class="number">0</span> &amp;&amp; nums[mid-<span class="number">1</span>]!=target)||mid==<span class="number">0</span>)&#123;  <span class="comment">//注意if条件的顺序，mid&gt;0与mid-1不能调换否则出错</span></span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">            &#123;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Gethigh</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid=(low+high)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">                <span class="keyword">if</span>((mid&lt;nums.length-<span class="number">1</span> &amp;&amp; nums[mid+<span class="number">1</span>]!=target)||mid==nums.length-<span class="number">1</span>)&#123;   <span class="comment">//**注意if条件的顺序，mid&lt;nums.length-1与mid+1不能调换否则出错**</span></span><br><span class="line">                    <span class="keyword">return</span> mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&lt;target)</span><br><span class="line">            &#123;</span><br><span class="line">                low=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                high=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h2 id="临界问题的解决"><a href="#临界问题的解决" class="headerlink" title="临界问题的解决"></a>临界问题的解决</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+
+
       
 
       
@@ -447,11 +929,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Dp系列</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">c++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,11 +937,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">剑指Offer</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
+                <a href="javascript:void(0)" class="js-tag color5">Dp系列</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,11 +953,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">c++</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">回溯</a>
               </li>
             
             <div class="clearfix"></div>
