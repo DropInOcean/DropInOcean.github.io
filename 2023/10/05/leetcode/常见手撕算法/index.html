@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" href="/img/avatar.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="排序算法快速排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public class Main &amp;#123;    public static void main(String[] args) &amp;#123;        int[] arr&#x3D;&amp;#123;16, 7,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手撕代码">
+<meta property="og:url" content="http://example.com/2023/10/05/leetcode/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="排序算法快速排序12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849public class Main &amp;#123;    public static void main(String[] args) &amp;#123;        int[] arr&#x3D;&amp;#123;16, 7,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-05T03:00:14.239Z">
+<meta property="article:modified_time" content="2021-04-11T05:02:38.704Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>手撕代码 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fall</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="手撕代码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-05 11:00" pubdate>
+          October 5, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">手撕代码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">public <span class="hljs-keyword">class</span> Main &#123;<br>    public static void main(String<span class="hljs-literal">[]</span> args) &#123;<br>        <span class="hljs-built_in">int</span><span class="hljs-literal">[]</span> arr=&#123;<span class="hljs-number">16</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">17</span>, <span class="hljs-number">8</span>&#125;;<br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">arr</span>)</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> num:arr)&#123;<br>            <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.print(num+<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br><br>    &#125;<br><br>    public static void quick<span class="hljs-constructor">Sort(<span class="hljs-params">int</span>[] <span class="hljs-params">a</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(a.length&gt;<span class="hljs-number">0</span>) &#123;<br>            quick<span class="hljs-constructor">Sort(<span class="hljs-params">a</span>, 0 , <span class="hljs-params">a</span>.<span class="hljs-params">length</span>-1)</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> static void quick<span class="hljs-constructor">Sort(<span class="hljs-params">int</span>[] <span class="hljs-params">a</span>, <span class="hljs-params">int</span> <span class="hljs-params">low</span>, <span class="hljs-params">int</span> <span class="hljs-params">high</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>( low &gt; high) &#123;<br>            return;<br>        &#125;<br>        <span class="hljs-built_in">int</span> i = low;<br>        <span class="hljs-built_in">int</span> j = high;<br>        <span class="hljs-built_in">int</span> key = a<span class="hljs-literal">[ <span class="hljs-identifier">low</span> ]</span>;<br><br>        <span class="hljs-keyword">while</span>( i&lt; j) &#123;<br>            <span class="hljs-keyword">while</span>(i&lt;j<span class="hljs-operator"> &amp;&amp; </span>a<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> &gt; key)&#123;<br>                j--;<br>            &#125;<br>            <span class="hljs-keyword">while</span>( i&lt;j<span class="hljs-operator"> &amp;&amp; </span>a<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> &lt;= key) &#123;<br>                i++;<br>            &#125;<br><br>            <span class="hljs-keyword">if</span>(i&lt;j) &#123;<br>                <span class="hljs-built_in">int</span> p = a<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>;<br>                a<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> = a<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span>;<br>                a<span class="hljs-literal">[<span class="hljs-identifier">j</span>]</span> = p;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-built_in">int</span> p = a<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>;<br>        a<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span> = a<span class="hljs-literal">[<span class="hljs-identifier">low</span>]</span>;<br>        a<span class="hljs-literal">[<span class="hljs-identifier">low</span>]</span> = p;<br><br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">a</span>, <span class="hljs-params">low</span>, <span class="hljs-params">i</span>-1 )</span>;<br>        quick<span class="hljs-constructor">Sort(<span class="hljs-params">a</span>, <span class="hljs-params">i</span>+1, <span class="hljs-params">high</span>)</span>;<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> merge(<span class="hljs-type">int</span>[] a,<span class="hljs-type">int</span> l1,<span class="hljs-type">int</span> r1,<span class="hljs-type">int</span> l2,<span class="hljs-type">int</span> r2) &#123;//将两个有序序列合并<br>    <span class="hljs-type">int</span> i=l1;<span class="hljs-type">int</span> j=l2;<br>    <span class="hljs-type">int</span>[] tmp=<span class="hljs-built_in">new</span>  <span class="hljs-type">int</span>[Max];<span class="hljs-type">int</span> <span class="hljs-keyword">index</span>=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i&lt;=r1&amp;&amp;j&lt;=r2)&#123;<br>        <span class="hljs-keyword">if</span>(a[i]&lt;a[j])&#123;<br>            tmp[<span class="hljs-keyword">index</span>++]=a[i++];<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            tmp[<span class="hljs-keyword">index</span>++]=a[j++];<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(i&lt;=r1)<br>        tmp[<span class="hljs-keyword">index</span>++]=a[i++];<br>    <span class="hljs-keyword">while</span> (j&lt;=r2)<br>        tmp[<span class="hljs-keyword">index</span>++]=a[j++];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k&lt;<span class="hljs-keyword">index</span>;k++)&#123;<br>        a[l1+k]=tmp[k];<br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">public</span> static  <span class="hljs-type">void</span> sort(<span class="hljs-type">int</span>[] a,<span class="hljs-type">int</span> left,<span class="hljs-type">int</span> right)&#123;//<span class="hljs-number">2</span>路归并<br>    <span class="hljs-keyword">if</span>(left&lt;right)&#123;<br>        <span class="hljs-type">int</span> mid=(left+right)/<span class="hljs-number">2</span>;<br>        sort(a,left,mid);<br>        sort(a,mid+<span class="hljs-number">1</span>,right);<br>        merge(a,left,mid,mid+<span class="hljs-number">1</span>,right);<br>    &#125;<br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="推排序"><a href="#推排序" class="headerlink" title="推排序"></a>推排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">int</span>[] arr=&#123;<span class="hljs-number">16</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">20</span>, <span class="hljs-number">17</span>, <span class="hljs-number">8</span>&#125;;<br>        heapSort(arr);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> num:arr)&#123;<br>            System.out.print(num+<span class="hljs-string">&quot; &quot;</span>);<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">heapSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span>&#123;<br>        createheap(arr);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=arr.length-<span class="hljs-number">1</span>;j&gt;=<span class="hljs-number">1</span>;j--)&#123;<br>            <span class="hljs-type">int</span> temp=arr[<span class="hljs-number">0</span>];<br>            arr[<span class="hljs-number">0</span>]=arr[j];<br>            arr[j]=temp;<br>            adjustHeap(arr,j,<span class="hljs-number">0</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">createheap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=arr.length/<span class="hljs-number">2</span>-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">0</span>;i--)&#123;<br>            adjustHeap(arr,arr.length,i);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">adjustHeap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr,<span class="hljs-type">int</span> len,<span class="hljs-type">int</span> i)</span>&#123;<br>        <span class="hljs-type">int</span> lchild=i*<span class="hljs-number">2</span>+<span class="hljs-number">1</span>;<br>        <span class="hljs-type">int</span> k=i;<br>        <span class="hljs-type">int</span> temp=arr[i];<br>        <span class="hljs-keyword">while</span>(lchild&lt;len)&#123;<br>            <span class="hljs-keyword">if</span>(lchild+<span class="hljs-number">1</span>&lt;len)&#123;<br>                <span class="hljs-keyword">if</span>(arr[lchild]&lt;arr[lchild+<span class="hljs-number">1</span>])&#123;<br>                    lchild=lchild+<span class="hljs-number">1</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(arr[lchild]&gt;temp)&#123;<br>                arr[k]=arr[lchild];<br>                k=lchild;<br>                lchild=<span class="hljs-number">2</span>*k+<span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        arr[k]=temp;<br><br>    &#125;<br>    <br>&#125;<br><br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">sort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span>&#123;<br>       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;a.length;i++)&#123;<br>           <span class="hljs-type">int</span> k=i;<br>           <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i;j&lt;a.length;j++)&#123;<br>               <span class="hljs-keyword">if</span>(a[j]&lt;a[k])&#123;<br>                   k=j;<br>               &#125;<br>           &#125;<br>           <span class="hljs-type">int</span> tmp=a[i];<br>           a[i]=a[k];<br>           a[k]=tmp;<br><br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h1><h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="倒置"><a href="#倒置" class="headerlink" title="倒置"></a>倒置</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    ListNode head=<span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">ListNode</span>&#123;  <span class="hljs-comment">//定义结构体</span><br>        <span class="hljs-type">int</span> value;<br>        ListNode next;<br>        ListNode(<span class="hljs-type">int</span> x)&#123;<br>            value=x;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/*添加元素*/</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addNode</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span>&#123;<br>        ListNode currnode=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ListNode</span>(i);<br>        <span class="hljs-keyword">if</span>(head==<span class="hljs-literal">null</span>)&#123;<br>            head=currnode;<br>            <span class="hljs-keyword">return</span>;    <span class="hljs-comment">//重点注意，不可省略，否则变为自身连接</span><br><br>        &#125;<br>        ListNode pNode=head;<br>        <span class="hljs-keyword">while</span>(pNode.next!=<span class="hljs-literal">null</span>)&#123;<br>            pNode=pNode.next;<br>        &#125;<br>        pNode.next=currnode;<br><br>    &#125;<br><br>    <span class="hljs-comment">/*打印元素*/</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">Print</span><span class="hljs-params">()</span>&#123;<br>        ListNode pnode=head;<br>        <span class="hljs-keyword">while</span> (pnode!=<span class="hljs-literal">null</span>)&#123;<br>            System.out.print(pnode.value+<span class="hljs-string">&quot; &quot;</span>);<br>            pnode=pnode.next;<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">/*倒置链表*/</span><br>    <span class="hljs-keyword">public</span> ListNode <span class="hljs-title function_">reverseList</span><span class="hljs-params">()</span> &#123;<br>        ListNode pHead=<span class="hljs-literal">null</span>;<br>        ListNode pRre=<span class="hljs-literal">null</span>;<br>        ListNode pNode=head;<br><br>        <span class="hljs-keyword">while</span>(pNode!=<span class="hljs-literal">null</span>)&#123;<br>            ListNode pNext=pNode.next;<br><br>            <span class="hljs-keyword">if</span>(pNext==<span class="hljs-literal">null</span>)&#123;<br>                pHead=pNode;<br>            &#125;<br><br>            pNode.next=pRre;<br>            pRre=pNode;<br>            pNode=pNext;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> pHead;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Main</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Main</span>();<br>       <span class="hljs-type">Scanner</span> <span class="hljs-variable">sc</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><br>        <span class="hljs-keyword">while</span>(!sc.hasNext(<span class="hljs-string">&quot;#&quot;</span>))&#123;<br>         list.addNode(Integer.valueOf(sc.next()));<br>        &#125;<br><br>        list.head=list.reverseList();<br>        list.Print();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="找出链表相同元素"><a href="#找出链表相同元素" class="headerlink" title="找出链表相同元素"></a>找出链表相同元素</h2><h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h2 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h2><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="还原树"><a href="#还原树" class="headerlink" title="还原树"></a>还原树</h2><h2 id="最近公共祖先"><a href="#最近公共祖先" class="headerlink" title="最近公共祖先"></a>最近公共祖先</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>手撕代码</div>
+      <div>http://example.com/2023/10/05/leetcode/常见手撕算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 5, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/05/leetcode/%E5%BF%AB%E6%8E%92%E7%9A%84%E6%94%B9%E8%BF%9B/" title="快排改进">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">快排改进</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/05/leetcode/%E6%9F%A5%E6%89%BE/" title="查找">
+                        <span class="hidden-mobile">查找</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

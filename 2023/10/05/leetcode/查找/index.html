@@ -16,21 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="搜素旋转排序数组已知存在一个按非降序排列的整数数组 nums ，数组中的值不必互不相同。在传递给函数之前，nums 在预先未知的某个下标 k（0 &lt;&#x3D; k &lt; nums.length）上进行了旋转使数组变为 [nums[k], nums[k+1], …, nums[n-1], nums[0], nums[1], …, nums[k-1]]（下标 从 0 开始 计数）例如:[0">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2023/10/04/hello-world/index.html">
+<meta property="og:title" content="查找">
+<meta property="og:url" content="http://example.com/2023/10/05/leetcode/%E6%9F%A5%E6%89%BE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="搜素旋转排序数组已知存在一个按非降序排列的整数数组 nums ，数组中的值不必互不相同。在传递给函数之前，nums 在预先未知的某个下标 k（0 &lt;&#x3D; k &lt; nums.length）上进行了旋转使数组变为 [nums[k], nums[k+1], …, nums[n-1], nums[0], nums[1], …, nums[k-1]]（下标 从 0 开始 计数）例如:[0">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-04T04:19:02.835Z">
-<meta property="article:modified_time" content="2023-10-04T04:19:02.835Z">
+<meta property="article:published_time" content="2023-10-05T03:00:14.236Z">
+<meta property="article:modified_time" content="2021-04-27T04:19:49.959Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - Hexo</title>
+  <title>查找 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="查找"></span>
           
         </div>
 
@@ -207,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-04 12:19" pubdate>
-          October 4, 2023 pm
+        <time datetime="2023-10-05 11:00" pubdate>
+          October 5, 2023 am
         </time>
       </span>
     
@@ -219,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 words
+          1.1k words
         
       </span>
     
@@ -230,7 +231,7 @@
         
         
         
-          4 mins
+          10 mins
         
       </span>
     
@@ -267,24 +268,46 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">查找</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="搜素旋转排序数组"><a href="#搜素旋转排序数组" class="headerlink" title="搜素旋转排序数组"></a>搜素旋转排序数组</h1><p>已知存在一个按非降序排列的整数数组 nums ，数组中的值不必互不相同。<br>在传递给函数之前，nums 在预先未知的某个下标 k（0 &lt;&#x3D; k &lt; nums.length）上进行了旋转<br>使数组变为 [nums[k], nums[k+1], …, nums[n-1], nums[0], nums[1], …, nums[k-1]]（下标 从 0 开始 计数）例如:[0,1,2,4,4,4,5,6,6,7] 在下标 5 处经旋转后可能变为 [4,5,6,6,7,0,1,2,4,4]<br>给你旋转后的数组 nums 和一个整数 target,请你编写一个函数来判断给定的目标值是否存在于数组中。如果 nums 中存在这个目标值 target ，则返回 true ，否则返回 false 。<br>示例 1：<br>输入：nums &#x3D; [2,5,6,0,0,1,2], target &#x3D; 0<br>输出：true<br>示例 2：<br>输入：nums &#x3D; [2,5,6,0,0,1,2], target &#x3D; 3<br>输出：false</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/">https://leetcode-cn.com/</a></p>
+<p><strong>思路：二分查找</strong></p>
+<ol>
+<li>当前中点&lt;最右端值，说明右端排序好<br>2）当前中点&gt;最右端值，说明左端排序好<br><em>注意：若中点&#x3D;&#x3D;左端值，不能确定左区间值全部相同，左端点右移一位</em></li>
+</ol>
+<pre><code class="java">class Solution &#123;
+    public boolean search(int[] nums, int target) &#123;
+       int start=0,end=nums.length-1;
+       while(start&lt;=end)&#123;
+           int mid=(start+end)/2;
+           if(nums[mid]==target)&#123;
+               return true;
+           &#125;
+           if(nums[mid]==nums[start])&#123;
+               start++;
+           &#125;else if(nums[mid]&lt;=nums[end])&#123;
+               if(target&gt;nums[mid]&amp;&amp;target&lt;=nums[end])&#123;
+                   start=mid+1;
+               &#125;else&#123;
+                   end=mid-1;
+               &#125;
+           &#125;else&#123;
+               if(target&gt;=nums[start]&amp;&amp;target&lt;nums[mid])&#123;
+                   end=mid-1;
+               &#125;else&#123;
+                   start=mid+1;
+               &#125;
+           &#125;
+       &#125; 
+       return false;
+    &#125;
+&#125;
+`
+</code></pre>
 
                 
               </div>
@@ -294,6 +317,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
 </div>
 
 
@@ -302,8 +332,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2023/10/04/hello-world/</div>
+      <div>查找</div>
+      <div>http://example.com/2023/10/05/leetcode/查找/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +345,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 4, 2023</div>
+          <div>October 5, 2023</div>
         </div>
       
       
@@ -347,9 +377,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/04/first_blog/" title="my first blog">
+                      <a href="/2023/10/05/leetcode/%E5%B8%B8%E8%A7%81%E6%89%8B%E6%92%95%E7%AE%97%E6%B3%95/" title="手撕代码">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">my first blog</span>
+                        <span class="hidden-mobile">手撕代码</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -357,8 +387,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/08/Compute_Network/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%8A%A0%E6%9D%83%E8%BD%AE%E8%AF%A2%E7%AE%97%E6%B3%95/" title="负载均衡加权轮询算法">
-                        <span class="hidden-mobile">负载均衡加权轮询算法</span>
+                      <a href="/2023/10/05/leetcode/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86/" title="图的实现与遍历">
+                        <span class="hidden-mobile">图的实现与遍历</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
