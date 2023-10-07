@@ -16,16 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="LossMSE loss 123456loss &#x3D; torch.nn.MSELoss()input &#x3D; torch.randn(3, 5, requires_grad&#x3D;True)target &#x3D; torch.randn(3, 5)output &#x3D; loss(input, target)output.backward()  Cross Entropy loss交叉熵loss常用于分类任务 Log l">
+    <meta name="description" content="LossMSE loss 123456loss &#x3D; torch.nn.MSELoss()input &#x3D; torch.randn(3, 5, requires_grad&#x3D;True)target &#x3D; torch.randn(3, 5)output &#x3D; loss(input, target)output.backward()  Cross Entropy loss交叉熵loss常用于分类任务 熵： 交叉">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见loss">
 <meta property="og:url" content="http://example.com/2023/10/05/deeep_learning/loss/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="LossMSE loss 123456loss &#x3D; torch.nn.MSELoss()input &#x3D; torch.randn(3, 5, requires_grad&#x3D;True)target &#x3D; torch.randn(3, 5)output &#x3D; loss(input, target)output.backward()  Cross Entropy loss交叉熵loss常用于分类任务 Log l">
+<meta property="og:description" content="LossMSE loss 123456loss &#x3D; torch.nn.MSELoss()input &#x3D; torch.randn(3, 5, requires_grad&#x3D;True)target &#x3D; torch.randn(3, 5)output &#x3D; loss(input, target)output.backward()  Cross Entropy loss交叉熵loss常用于分类任务 熵： 交叉">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/MSEloss.png">
+<meta property="og:image" content="http://example.com/img/Entropy.png">
+<meta property="og:image" content="http://example.com/img/crossloss.png">
+<meta property="og:image" content="http://example.com/img/loss_01.png">
+<meta property="og:image" content="http://example.com/img/GANloss.png">
+<meta property="og:image" content="http://example.com/img/KL.png">
 <meta property="article:published_time" content="2023-10-05T03:53:29.748Z">
-<meta property="article:modified_time" content="2023-10-07T03:28:40.129Z">
+<meta property="article:modified_time" content="2023-10-07T05:01:31.924Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="loss">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          195 words
+          2.8k words
         
       </span>
     
@@ -233,7 +238,7 @@
         
         
         
-          2 mins
+          24 mins
         
       </span>
     
@@ -279,7 +284,23 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">loss = torch.nn.MSELoss()<br><span class="hljs-built_in">input</span> = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, requires_grad=<span class="hljs-literal">True</span>)<br>target = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>)<br>output = loss(<span class="hljs-built_in">input</span>, target)<br>output.backward()<br><br></code></pre></td></tr></table></figure>
 
 <h2 id="Cross-Entropy-loss"><a href="#Cross-Entropy-loss" class="headerlink" title="Cross Entropy loss"></a>Cross Entropy loss</h2><p>交叉熵loss常用于分类任务</p>
-<h2 id="Log-loss"><a href="#Log-loss" class="headerlink" title="Log loss"></a>Log loss</h2><h2 id="KL-Divergence"><a href="#KL-Divergence" class="headerlink" title="KL Divergence"></a>KL Divergence</h2>
+<p>熵：<br><img src="/img/Entropy.png" srcset="/img/loading.gif" lazyload alt="Entropy"></p>
+<p>交叉熵：<br><img src="/img/crossloss.png" srcset="/img/loading.gif" lazyload alt="Cross Entropy Loss"></p>
+<p>二分类的交叉熵：<br><img src="/img/loss_01.png" srcset="/img/loading.gif" lazyload alt="01 cross Loss"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-comment"># Example of target with class indices</span><br>loss = nn.CrossEntropyLoss()<br><span class="hljs-built_in">input</span> = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, requires_grad=<span class="hljs-literal">True</span>)<br>target = torch.empty(<span class="hljs-number">3</span>, dtype=torch.long).random_(<span class="hljs-number">5</span>)<br>output = loss(<span class="hljs-built_in">input</span>, target)<br>output.backward()<br><span class="hljs-comment"># Example of target with class probabilities</span><br><span class="hljs-built_in">input</span> = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, requires_grad=<span class="hljs-literal">True</span>)<br>target = torch.randn(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>).softmax(dim=<span class="hljs-number">1</span>)<br>output = loss(<span class="hljs-built_in">input</span>, target)<br>output.backward()<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="对抗loss"><a href="#对抗loss" class="headerlink" title="对抗loss"></a>对抗loss</h2><p>最开始的GAN：</p>
+<p>改进的WGAN：<br><img src="/img/GANloss.png" srcset="/img/loading.gif" lazyload alt="wGAN"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">GANLoss</span>(nn.Module):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, use_lsgan=<span class="hljs-literal">True</span>, target_real_label=<span class="hljs-number">1.0</span>, target_fake_label=<span class="hljs-number">0.0</span>,</span><br><span class="hljs-params">                 tensor=torch.FloatTensor</span>):<br>        <span class="hljs-built_in">super</span>(GANLoss, self).__init__()<br>        self.real_label = target_real_label<br>        self.fake_label = target_fake_label<br>        self.real_label_var = <span class="hljs-literal">None</span><br>        self.fake_label_var = <span class="hljs-literal">None</span><br>        self.Tensor = tensor<br>        <span class="hljs-comment">#lsGAN or vanillaGAN</span><br>        <span class="hljs-keyword">if</span> use_lsgan:<br>            self.loss = nn.MSELoss()<br>        <span class="hljs-keyword">else</span>:<br>            self.loss = nn.BCELoss()<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_target_tensor</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span>, target_is_real</span>):<br>        target_tensor = <span class="hljs-literal">None</span><br>        <span class="hljs-keyword">if</span> target_is_real:<br>            create_label = ((self.real_label_var <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>) <span class="hljs-keyword">or</span><br>                            (self.real_label_var.numel() != <span class="hljs-built_in">input</span>.numel()))<br>            <span class="hljs-keyword">if</span> create_label:<br>                real_tensor = self.Tensor(<span class="hljs-built_in">input</span>.size()).fill_(self.real_label)<br>                self.real_label_var = Variable(real_tensor, requires_grad=<span class="hljs-literal">False</span>)<br>            target_tensor = self.real_label_var<br>        <span class="hljs-keyword">else</span>:<br>            create_label = ((self.fake_label_var <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>) <span class="hljs-keyword">or</span><br>                            (self.fake_label_var.numel() != <span class="hljs-built_in">input</span>.numel()))<br>            <span class="hljs-keyword">if</span> create_label:<br>                fake_tensor = self.Tensor(<span class="hljs-built_in">input</span>.size()).fill_(self.fake_label)<br>                self.fake_label_var = Variable(fake_tensor, requires_grad=<span class="hljs-literal">False</span>)<br>            target_tensor = self.fake_label_var<br>        <span class="hljs-keyword">return</span> target_tensor<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__call__</span>(<span class="hljs-params">self, <span class="hljs-built_in">input</span>, target_is_real</span>):<br>        target_tensor = self.get_target_tensor(<span class="hljs-built_in">input</span>, target_is_real)<br>        <span class="hljs-keyword">return</span> self.loss(<span class="hljs-built_in">input</span>, target_tensor)<br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="KL-Divergence"><a href="#KL-Divergence" class="headerlink" title="KL Divergence"></a>KL Divergence</h2><p><img src="/img/KL.png" srcset="/img/loading.gif" lazyload alt="KL loss"></p>
+<h2 id="IOU-loss"><a href="#IOU-loss" class="headerlink" title="IOU loss"></a>IOU loss</h2><p>IoU就是我们所说的交并比，是目标检测中最常用的指标，在anchor-based的方法中，他的作用不仅用来确定正样本和负样本，还可以用来评价输出框（predict box）和ground-truth的距离。</p>
+<p>可以说它可以反映预测检测框与真实检测框的检测效果。还有一个很好的特性就是尺度不变性，也就是对尺度不敏感（scale invariant）， 在regression任务中，判断predict box和gt的距离最直接的指标就是IoU。(满足非负性；同一性；对称性；三角不等性)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Iou</span>(<span class="hljs-params">box1, box2, wh=<span class="hljs-literal">False</span></span>):<br>    <span class="hljs-keyword">if</span> wh == <span class="hljs-literal">False</span>:<br>	xmin1, ymin1, xmax1, ymax1 = box1<br>	xmin2, ymin2, xmax2, ymax2 = box2<br>    <span class="hljs-keyword">else</span>:<br>	xmin1, ymin1 = <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">0</span>]-box1[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">1</span>]-box1[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmax1, ymax1 = <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">0</span>]+box1[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">1</span>]+box1[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmin2, ymin2 = <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">0</span>]-box2[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">1</span>]-box2[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmax2, ymax2 = <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">0</span>]+box2[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">1</span>]+box2[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>    <span class="hljs-comment"># 获取矩形框交集对应的左上角和右下角的坐标（intersection）</span><br>    xx1 = np.<span class="hljs-built_in">max</span>([xmin1, xmin2])<br>    yy1 = np.<span class="hljs-built_in">max</span>([ymin1, ymin2])<br>    xx2 = np.<span class="hljs-built_in">min</span>([xmax1, xmax2])<br>    yy2 = np.<span class="hljs-built_in">min</span>([ymax1, ymax2])	<br>    <span class="hljs-comment"># 计算两个矩形框面积</span><br>    area1 = (xmax1-xmin1) * (ymax1-ymin1) <br>    area2 = (xmax2-xmin2) * (ymax2-ymin2)<br>    inter_area = (np.<span class="hljs-built_in">max</span>([<span class="hljs-number">0</span>, xx2-xx1])) * (np.<span class="hljs-built_in">max</span>([<span class="hljs-number">0</span>, yy2-yy1]))　<span class="hljs-comment">#计算交集面积</span><br>    iou = inter_area / (area1+area2-inter_area+<span class="hljs-number">1e-6</span>) 　<span class="hljs-comment">#计算交并比</span><br><br>    <span class="hljs-keyword">return</span> iou<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348498294">https://zhuanlan.zhihu.com/p/348498294</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94799295">https://zhuanlan.zhihu.com/p/94799295</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
@@ -437,6 +458,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -630,6 +657,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
