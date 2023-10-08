@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Segment Metric</title>
+    <link href="/2023/10/08/deeep_learning/segment_metric/"/>
+    <url>/2023/10/08/deeep_learning/segment_metric/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Dice"><a href="#Dice" class="headerlink" title="Dice"></a>Dice</h2><p>TP：True Positive,被判定为正样本，事实上也是正样本<br>TN：True Negative,被判定为负样本，事实上也是负样本<br>FP：False Positive,被判定为正样本，但事实上是负样本<br>FN：False Negative,被判定为负样本，但事实上是正样本</p><p>Dice &#x3D; 2TP&#x2F;(2TP+FP+FN)</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dice_coefficient</span>(<span class="hljs-params">y_true, y_pred, smooth=<span class="hljs-number">1e-6</span></span>):<br>    <br>    intersection = np.<span class="hljs-built_in">sum</span>(y_true * y_pred)<br>    union = np.<span class="hljs-built_in">sum</span>(y_true) + np.<span class="hljs-built_in">sum</span>(y_pred)<br>    <br>    <span class="hljs-keyword">return</span> (<span class="hljs-number">2.</span> * intersection + smooth) / (union + smooth)<br><br><span class="hljs-comment"># Example</span><br><span class="hljs-comment"># y_true = ...  # Ground truth mask. Should be a binary numpy array with shape [H, W].</span><br><span class="hljs-comment"># y_pred = ...  # Predicted mask. Should be a binary numpy array with shape [H, W].</span><br><span class="hljs-comment"># dice = dice_coefficient(y_true, y_pred)</span><br><span class="hljs-comment"># print(f&quot;Dice Coefficient: &#123;dice&#125;&quot;)</span><br><br></code></pre></td></tr></table></figure><h2 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h2><p><img src="/img/IOU.png" alt="IOU"></p><h2 id="Hausdorff-95"><a href="#Hausdorff-95" class="headerlink" title="Hausdorff_95"></a>Hausdorff_95</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://zhuanlan.zhihu.com/p/117435908">https://zhuanlan.zhihu.com/p/117435908</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
+    
+    
+    <categories>
+      
+      <category>Deep_learning</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>segment_metric</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Metric</title>
     <link href="/2023/10/06/deeep_learning/%E4%BC%A0%E7%BB%9F%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95/"/>
     <url>/2023/10/06/deeep_learning/%E4%BC%A0%E7%BB%9F%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95/</url>
@@ -67,11 +92,11 @@
   
   
   <entry>
-    <title>Metric</title>
-    <link href="/2023/10/06/deeep_learning/metric/"/>
-    <url>/2023/10/06/deeep_learning/metric/</url>
+    <title>GAN Metric</title>
+    <link href="/2023/10/06/deeep_learning/gan_metric/"/>
+    <url>/2023/10/06/deeep_learning/gan_metric/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="无监督"><a href="#无监督" class="headerlink" title="无监督"></a>无监督</h1><h2 id="IS-Inception-Score"><a href="#IS-Inception-Score" class="headerlink" title="IS(Inception Score)"></a>IS(Inception Score)</h2><p>评估生成图像的质量和多样性。就质量而言，使用Inception网络对生成的图像进行分类（标记），正确分类结果越集中，图像的质量就越高。就多样性而言，将生成的所有图像分类为不同的标签（熵较高）时，多样性就越大。</p><h2 id="FID"><a href="#FID" class="headerlink" title="FID"></a>FID</h2><p>使用Inception网络将生成图像集合和真实图像集合转换为保留图像高维信息的特征向量。假设这两个特征向量的分布为高斯分布，并计算其均值和协方差矩阵。通过测量概率分布之间的“距离”（相似程度）来评估生成图像与真实图像的相似程度。<br><img src="/img/fid1.png" alt="FID"><br><img src="/img/FID.png" alt="picture"></p><h1 id="有监督"><a href="#有监督" class="headerlink" title="有监督"></a>有监督</h1><h2 id="PSNR"><a href="#PSNR" class="headerlink" title="PSNR"></a>PSNR</h2><p><img src="/img/mse.png" alt="MSE"><br><img src="/img/psnr.png" alt="PSNR"></p><h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p>对两个图像样本 和 之间的亮度 、对比度 、结构 三个方面进行比较衡量，可理解为一个描述了两幅图像相似度的评价指标</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://zhuanlan.zhihu.com/p/109342043">https://zhuanlan.zhihu.com/p/109342043</a><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>]]></content>
     
     
     <categories>
@@ -83,7 +108,7 @@
     
     <tags>
       
-      <tag>metric</tag>
+      <tag>gan_metric</tag>
       
     </tags>
     
