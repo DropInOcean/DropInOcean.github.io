@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://example.com/img/mse.png">
 <meta property="og:image" content="http://example.com/img/psnr.png">
 <meta property="article:published_time" content="2023-10-06T13:29:38.833Z">
-<meta property="article:modified_time" content="2023-10-08T08:34:24.087Z">
+<meta property="article:modified_time" content="2023-10-08T08:47:18.348Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="gan_metric">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          346 words
+          344 words
         
       </span>
     
@@ -281,7 +281,7 @@
                 <h1 id="无监督"><a href="#无监督" class="headerlink" title="无监督"></a>无监督</h1><h2 id="IS-Inception-Score"><a href="#IS-Inception-Score" class="headerlink" title="IS(Inception Score)"></a>IS(Inception Score)</h2><p>评估生成图像的质量和多样性。就质量而言，使用Inception网络对生成的图像进行分类（标记），正确分类结果越集中，图像的质量就越高。就多样性而言，将生成的所有图像分类为不同的标签（熵较高）时，多样性就越大。</p>
 <h2 id="FID"><a href="#FID" class="headerlink" title="FID"></a>FID</h2><p>使用Inception网络将生成图像集合和真实图像集合转换为保留图像高维信息的特征向量。假设这两个特征向量的分布为高斯分布，并计算其均值和协方差矩阵。通过测量概率分布之间的“距离”（相似程度）来评估生成图像与真实图像的相似程度。<br><img src="/img/fid1.png" srcset="/img/loading.gif" lazyload alt="FID"><br><img src="/img/FID.png" srcset="/img/loading.gif" lazyload alt="picture"></p>
 <h1 id="有监督"><a href="#有监督" class="headerlink" title="有监督"></a>有监督</h1><h2 id="PSNR"><a href="#PSNR" class="headerlink" title="PSNR"></a>PSNR</h2><p><img src="/img/mse.png" srcset="/img/loading.gif" lazyload alt="MSE"><br><img src="/img/psnr.png" srcset="/img/loading.gif" lazyload alt="PSNR"></p>
-<h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p>对两个图像样本 和 之间的亮度 、对比度 、结构 三个方面进行比较衡量，可理解为一个描述了两幅图像相似度的评价指标</p>
+<h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p>对两个图像样本间的亮度 、对比度 、结构 三个方面进行比较衡量，可理解为一个描述了两幅图像相似度的评价指标</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/109342043">https://zhuanlan.zhihu.com/p/109342043</a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
