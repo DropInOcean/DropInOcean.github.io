@@ -29,8 +29,10 @@
 <meta property="og:image" content="http://example.com/img/loss_01.png">
 <meta property="og:image" content="http://example.com/img/GANloss.png">
 <meta property="og:image" content="http://example.com/img/KL.png">
+<meta property="og:image" content="http://example.com/img/wloss.png">
+<meta property="og:image" content="http://example.com/img/diceloss.png">
 <meta property="article:published_time" content="2023-10-05T03:53:29.748Z">
-<meta property="article:modified_time" content="2023-10-07T05:01:31.924Z">
+<meta property="article:modified_time" content="2023-10-11T14:55:23.786Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="loss">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k words
+          3.7k words
         
       </span>
     
@@ -238,7 +240,7 @@
         
         
         
-          24 mins
+          32 mins
         
       </span>
     
@@ -298,9 +300,20 @@
 <p>可以说它可以反映预测检测框与真实检测框的检测效果。还有一个很好的特性就是尺度不变性，也就是对尺度不敏感（scale invariant）， 在regression任务中，判断predict box和gt的距离最直接的指标就是IoU。(满足非负性；同一性；对称性；三角不等性)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">Iou</span>(<span class="hljs-params">box1, box2, wh=<span class="hljs-literal">False</span></span>):<br>    <span class="hljs-keyword">if</span> wh == <span class="hljs-literal">False</span>:<br>	xmin1, ymin1, xmax1, ymax1 = box1<br>	xmin2, ymin2, xmax2, ymax2 = box2<br>    <span class="hljs-keyword">else</span>:<br>	xmin1, ymin1 = <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">0</span>]-box1[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">1</span>]-box1[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmax1, ymax1 = <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">0</span>]+box1[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box1[<span class="hljs-number">1</span>]+box1[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmin2, ymin2 = <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">0</span>]-box2[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">1</span>]-box2[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>	xmax2, ymax2 = <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">0</span>]+box2[<span class="hljs-number">2</span>]/<span class="hljs-number">2.0</span>), <span class="hljs-built_in">int</span>(box2[<span class="hljs-number">1</span>]+box2[<span class="hljs-number">3</span>]/<span class="hljs-number">2.0</span>)<br>    <span class="hljs-comment"># 获取矩形框交集对应的左上角和右下角的坐标（intersection）</span><br>    xx1 = np.<span class="hljs-built_in">max</span>([xmin1, xmin2])<br>    yy1 = np.<span class="hljs-built_in">max</span>([ymin1, ymin2])<br>    xx2 = np.<span class="hljs-built_in">min</span>([xmax1, xmax2])<br>    yy2 = np.<span class="hljs-built_in">min</span>([ymax1, ymax2])	<br>    <span class="hljs-comment"># 计算两个矩形框面积</span><br>    area1 = (xmax1-xmin1) * (ymax1-ymin1) <br>    area2 = (xmax2-xmin2) * (ymax2-ymin2)<br>    inter_area = (np.<span class="hljs-built_in">max</span>([<span class="hljs-number">0</span>, xx2-xx1])) * (np.<span class="hljs-built_in">max</span>([<span class="hljs-number">0</span>, yy2-yy1]))　<span class="hljs-comment">#计算交集面积</span><br>    iou = inter_area / (area1+area2-inter_area+<span class="hljs-number">1e-6</span>) 　<span class="hljs-comment">#计算交并比</span><br><br>    <span class="hljs-keyword">return</span> iou<br><br></code></pre></td></tr></table></figure>
 
+<h1 id="分割任务："><a href="#分割任务：" class="headerlink" title="分割任务："></a>分割任务：</h1><h2 id="BCE-loss"><a href="#BCE-loss" class="headerlink" title="BCE loss"></a>BCE loss</h2><p>交叉熵Loss可以用在大多数语义分割场景中，但它有一个明显的缺点，那就是对于只用分割前景和背景的时候，当前景像素的数量远远小于背景像素的数量时，即y&#x3D;0的数量远大于y&#x3D;1的数量，损失函数中y&#x3D;0的成分就会占据主导，使得模型严重偏向背景，导致效果不好。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#二值交叉熵，这里输入要经过sigmoid处理</span><br><span class="hljs-keyword">import</span> torch<br><span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn<br><span class="hljs-keyword">import</span> torch.nn.functional <span class="hljs-keyword">as</span> F<br>nn.BCELoss(F.sigmoid(<span class="hljs-built_in">input</span>), target)<br><span class="hljs-comment">#多分类交叉熵, 用这个 loss 前面不需要加 Softmax 层</span><br>nn.CrossEntropyLoss(<span class="hljs-built_in">input</span>, target)<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="/img/wloss.png" srcset="/img/loading.gif" lazyload alt="wcross loss"><br>可以看到只是在交叉熵Loss的基础上为每一个类别添加了一个权重参数，其中wc&#x3D;(N-Nc)&#x2F;N,其中N表示总的像素个数,而Nc表示GT类别为c的像素个数。这样相比于原始的交叉熵Loss，在样本数量不均衡的情况下可以获得更好的效果。</p>
+<h2 id="Dice-loss"><a href="#Dice-loss" class="headerlink" title="Dice loss"></a>Dice loss</h2><p><img src="/img/diceloss.png" srcset="/img/loading.gif" lazyload alt="Dice loss"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">dice_loss</span>(<span class="hljs-params">prediction, target</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Calculating the dice loss</span><br><span class="hljs-string">    Args:</span><br><span class="hljs-string">        prediction = predicted image</span><br><span class="hljs-string">        target = Targeted image</span><br><span class="hljs-string">    Output:</span><br><span class="hljs-string">        dice_loss&quot;&quot;&quot;</span><br><br>    smooth = <span class="hljs-number">1.0</span><br><br>    i_flat = prediction.view(-<span class="hljs-number">1</span>)<br>    t_flat = target.view(-<span class="hljs-number">1</span>)<br><br>    intersection = (i_flat * t_flat).<span class="hljs-built_in">sum</span>()<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> - ((<span class="hljs-number">2.</span> * intersection + smooth) / (i_flat.<span class="hljs-built_in">sum</span>() + t_flat.<span class="hljs-built_in">sum</span>() + smooth))<br><br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348498294">https://zhuanlan.zhihu.com/p/348498294</a>
 <a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94799295">https://zhuanlan.zhihu.com/p/94799295</a>
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:3" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/103426335">https://zhuanlan.zhihu.com/p/103426335</a>
+<a href="#fnref:3" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:4" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/101773544">https://zhuanlan.zhihu.com/p/101773544</a>
+<a href="#fnref:4" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
                 
               </div>
             
