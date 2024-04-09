@@ -16,24 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="DiceTP：True Positive,被判定为正样本，事实上也是正样本TN：True Negative,被判定为负样本，事实上也是负样本FP：False Positive,被判定为正样本，但事实上是负样本FN：False Negative,被判定为负样本，但事实上是正样本 Dice &#x3D; 2TP&#x2F;(2TP+FP+FN) 123456789101112131415import">
+    <meta name="description" content="使用 Python 的 itertools.product 函数来生成所有可能的组合 1234567891011import itertoolsa &#x3D; (1, 3, 4)b &#x3D; (6, 8)c &#x3D; (1, 4, 6, 7)d &#x3D; list(itertools.product(a, b, c))print(d)  输出：[(1, 6, 1), (1, 6, 4), (1, 6, 6), (1, 6,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Segment Metric">
-<meta property="og:url" content="http://example.com/2023/10/08/deeep_learning/segment_metric/index.html">
+<meta property="og:title" content="python语法">
+<meta property="og:url" content="http://example.com/2023/10/20/Python/python/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="DiceTP：True Positive,被判定为正样本，事实上也是正样本TN：True Negative,被判定为负样本，事实上也是负样本FP：False Positive,被判定为正样本，但事实上是负样本FN：False Negative,被判定为负样本，但事实上是正样本 Dice &#x3D; 2TP&#x2F;(2TP+FP+FN) 123456789101112131415import">
+<meta property="og:description" content="使用 Python 的 itertools.product 函数来生成所有可能的组合 1234567891011import itertoolsa &#x3D; (1, 3, 4)b &#x3D; (6, 8)c &#x3D; (1, 4, 6, 7)d &#x3D; list(itertools.product(a, b, c))print(d)  输出：[(1, 6, 1), (1, 6, 4), (1, 6, 6), (1, 6,">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/img/IOU.png">
-<meta property="article:published_time" content="2023-10-08T07:55:15.701Z">
-<meta property="article:modified_time" content="2023-10-08T08:42:46.987Z">
+<meta property="article:published_time" content="2023-10-20T04:00:11.480Z">
+<meta property="article:modified_time" content="2023-10-20T04:02:07.231Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="segment_metric">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/IOU.png">
   
   
   
-  <title>Segment Metric - Hexo</title>
+  <title>python语法 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Segment Metric"></span>
+            <span id="subtitle" data-typed-text="python语法"></span>
           
         </div>
 
@@ -210,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-08 15:55" pubdate>
-          October 8, 2023 pm
+        <time datetime="2023-10-20 12:00" pubdate>
+          October 20, 2023 pm
         </time>
       </span>
     
@@ -222,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          649 words
+          329 words
         
       </span>
     
@@ -233,7 +231,7 @@
         
         
         
-          6 mins
+          3 mins
         
       </span>
     
@@ -270,18 +268,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Segment Metric</h1>
+            <h1 id="seo-header">python语法</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="Dice"><a href="#Dice" class="headerlink" title="Dice"></a>Dice</h2><p>TP：True Positive,被判定为正样本，事实上也是正样本<br>TN：True Negative,被判定为负样本，事实上也是负样本<br>FP：False Positive,被判定为正样本，但事实上是负样本<br>FN：False Negative,被判定为负样本，但事实上是正样本</p>
-<p>Dice &#x3D; 2TP&#x2F;(2TP+FP+FN)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">dice_coefficient</span>(<span class="hljs-params">y_true, y_pred, smooth=<span class="hljs-number">1e-6</span></span>):<br>    <br>    intersection = np.<span class="hljs-built_in">sum</span>(y_true * y_pred)<br>    union = np.<span class="hljs-built_in">sum</span>(y_true) + np.<span class="hljs-built_in">sum</span>(y_pred)<br>    <br>    <span class="hljs-keyword">return</span> (<span class="hljs-number">2.</span> * intersection + smooth) / (union + smooth)<br><br><span class="hljs-comment"># Example</span><br><span class="hljs-comment"># y_true = ...  # Ground truth mask. Should be a binary numpy array with shape [H, W].</span><br><span class="hljs-comment"># y_pred = ...  # Predicted mask. Should be a binary numpy array with shape [H, W].</span><br><span class="hljs-comment"># dice = dice_coefficient(y_true, y_pred)</span><br><span class="hljs-comment"># print(f&quot;Dice Coefficient: &#123;dice&#125;&quot;)</span><br><br></code></pre></td></tr></table></figure>
+                <p>使用 Python 的 itertools.product 函数来生成所有可能的组合</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">import</span> itertools<br><br>a = (<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)<br>b = (<span class="hljs-number">6</span>, <span class="hljs-number">8</span>)<br>c = (<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>)<br><br>d = <span class="hljs-built_in">list</span>(itertools.product(a, b, c))<br><br><span class="hljs-built_in">print</span>(d)<br><br></code></pre></td></tr></table></figure>
 
-<h2 id="IOU"><a href="#IOU" class="headerlink" title="IOU"></a>IOU</h2><p><img src="/img/IOU.png" srcset="/img/loading.gif" lazyload alt="IOU"></p>
-<h2 id="Hausdorff-95"><a href="#Hausdorff-95" class="headerlink" title="Hausdorff_95"></a>Hausdorff_95</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/117435908">https://zhuanlan.zhihu.com/p/117435908</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<p>输出：[(1, 6, 1), (1, 6, 4), (1, 6, 6), (1, 6, 7), (1, 8, 1), (1, 8, 4), (1, 8, 6), (1, 8, 7), (3, 6, 1), (3, 6, 4), (3, 6, 6), (3, 6, 7), (3, 8, 1), (3, 8, 4), (3, 8, 6), (3, 8, 7), (4, 6, 1), (4, 6, 4), (4, 6, 6), (4, 6, 7), (4, 8, 1), (4, 8, 4), (4, 8, 6), (4, 8, 7)]</p>
+
                 
               </div>
             
@@ -299,7 +295,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Deep-learning/" class="category-chain-item">Deep_learning</a>
+  <a href="/categories/python/" class="category-chain-item">python</a>
   
   
 
@@ -314,7 +310,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/segment-metric/" class="print-no-link">#segment_metric</a>
+        <a href="/tags/python/" class="print-no-link">#python</a>
       
     </div>
   
@@ -326,8 +322,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Segment Metric</div>
-      <div>http://example.com/2023/10/08/deeep_learning/segment_metric/</div>
+      <div>python语法</div>
+      <div>http://example.com/2023/10/20/Python/python/</div>
     </div>
     <div class="license-meta">
       
@@ -339,7 +335,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 8, 2023</div>
+          <div>October 20, 2023</div>
         </div>
       
       
@@ -371,9 +367,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/20/Python/python/" title="python语法">
+                      <a href="/2024/02/22/deeep_learning/transformers/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python语法</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -381,8 +377,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/06/deeep_learning/%E4%BC%A0%E7%BB%9F%E8%A7%86%E8%A7%89%E7%AE%97%E6%B3%95/" title="Metric">
-                        <span class="hidden-mobile">Metric</span>
+                      <a href="/2023/10/08/deeep_learning/segment_metric/" title="Segment Metric">
+                        <span class="hidden-mobile">Segment Metric</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
